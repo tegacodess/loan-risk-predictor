@@ -111,7 +111,8 @@ loan_freq = st.number_input('Loan Frequency', min_value = 1, step= 1)
 
 # predictions
 if st.button('Predict'):
-  lat, lon = forwardgeocode(state,country, API_KEY)
+    fulladdress = f'{state}, {country}'
+  lat, lon = forwardgeocode(fulladdress, API_KEY)
 
   if lat is None or lon is None:
     st.error("Couldn't fetch coordinates for given state/country. Please crosscheck entry")
