@@ -133,7 +133,7 @@ if st.button('Predict'):
     x= pd.DataFrame([features_data])
     prediction = model.predict(x)
     if prediction[0] == 0:
-      st.error("Prediction: Default (Bad Credit Risk)")
+      st.error("Prediction: Likely to Default (Bad Credit Risk)")
     else:
-      st.success("Prediction: No Default (Good Credit Risk)")
+      st.success("Prediction: Likely to Not Default (Good Credit Risk)")
 
