@@ -21,7 +21,7 @@ def forwardgeocode(address, api_key ):
       result = response.json()
       if 'results' in result and len(result['results']) > 0:
           location = result['results'][0]['geometry']['location']
-          return location['lat'], location['lon']
+          return location['lat'], location['lng']
       else:
            return None, None
   else:
