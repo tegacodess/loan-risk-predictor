@@ -112,25 +112,24 @@ loan_freq = st.number_input('Loan Frequency', min_value = 1, step= 1)
 # predictions
 if st.button('Predict'):
     fulladdress = f'{state}, {country}'
-  lat, lon = forwardgeocode(fulladdress, API_KEY)
-
-  if lat is None or lon is None:
-    st.error("Couldn't fetch coordinates for given state/country. Please crosscheck entry")
-  else:
-    features_data ={
-        "bank_account_type": account_type,
+    lat, lon = forwardgeocode(fulladdress, API_KEY)
+    
+    if lat is None or lon is None:
+        st.error("Couldn't fetch coordinates for given state/country. Please crosscheck entry")
+    else:
+        features_data ={
+            "bank_account_type": account_type,
             "longitude_gps": lon,
             "latitude_gps": lat,
             "bank_branch_state": state,
             "bank_branch_country": country,
             "employment_status_clients": employment_status,
             "level_of_education_clients": education_level,
-        "bank_name_clients": bank_name,
+            "bank_name_clients": bank_name,
             "credit score": credit_score,
             "age": age,
-        "loan_freq": loan_freq
-    }
-
+           "loan_freq": loan_freq
+        }
     x= pd.DataFrame([features_data])
     prediction = model.predict(x)
     if prediction[0] == 0:
